@@ -1,6 +1,7 @@
 import pygame
 from settings import Settings
 from ship import Ship
+from alien import Alien
 import game_function as gf 
 from pygame.sprite import Group
 
@@ -15,9 +16,19 @@ def run_game():
 
     #Criar a espaçonave
     ship = Ship(ai_settings, screen)
+    
+    #Criar um alienigena
+        #alien = Alien(ai_settings, screen)
+
+    #Cria um grupo de alienigenas
+    aliens = Group()
 
     #Cria um grupo no qual serão armazenados os projéteis
     bullets = Group()
+
+    #Cria uma frota de alienigenas
+    gf.create_fleet(ai_settings,screen,aliens)
+
 
     #Inicia o laço principal do jogo
     while True:
@@ -31,7 +42,7 @@ def run_game():
         #print(len(bullets))
         
         #Atualiza as imagens na tela e alterna para nova tela
-        gf.update_screen(ai_settings, screen, ship, bullets)
+        gf.update_screen(ai_settings, screen, ship, aliens, bullets)
 
 
 run_game()
